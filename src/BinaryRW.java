@@ -17,18 +17,22 @@ public class BinaryRW {
     as integer number
     */
     public void read() {
+        String delimiter = " ";
+        if(Application.delimiter == 1) {
+            delimiter = "\n";
+        }
         boolean[] bitArray = new boolean[numOfBits];
         try {
             
             File file = new File(fileName);
             BitInputStream bis = new BitInputStream(new FileInputStream(file));
             System.out.println(fileName+" has opened successfully");
-            BufferedWriter bw = new BufferedWriter(new FileWriter("files/output.txt"));
+            BufferedWriter bw = new BufferedWriter(new FileWriter("files/numbers.txt"));
             
             String extension = getFileExtension();
             bw.write(extension+"\n"); // write file extension at first line of file
             
-            System.out.println("Now, writing to output.txt file");
+            System.out.println("Now, writing to numbers.txt file");
             
             // Loop through size of file in bits
             long sizeOfFileInBits = file.length()*8;
@@ -37,7 +41,9 @@ public class BinaryRW {
                 bitArray[modVal] = bis.read(); // fill array to write into output
                 if(modVal == 0) { // when buffer and array is full, then write to file
                     int output = booleanToInteger(bitArray);
-                    bw.write(output+"\n");
+                    // Add one to output number
+                    output++;
+                    bw.write(output+delimiter);
                 }
             }
             bis.close();
