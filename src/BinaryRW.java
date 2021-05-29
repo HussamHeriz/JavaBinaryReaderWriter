@@ -48,6 +48,7 @@ public class BinaryRW {
                     writtenNumbers++;
                     if(writtenNumbers % 20 == 0) {
                         bw.write("\n");
+                        writtenNumbers = 0;
                     }
                 }
             }
