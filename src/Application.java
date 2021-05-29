@@ -14,7 +14,7 @@ public class Application {
             delimiter = scanner.nextInt();  
         }
         
-        /* Read file and write it as integer to output.txt */
+        /* Read file and write it as integer to numbers.txt */
         BinaryRW brw = new BinaryRW("files/sakhra.jpg", 4);
         
         /* Read output.txt and write it to output.extension */

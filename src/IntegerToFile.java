@@ -39,15 +39,21 @@ public class IntegerToFile {
                     writeInteger(num);
                 }
             } else { // Space Delimiter
-                line = br.readLine();
                 
-                Scanner numbers = new Scanner(line);
-                int number;
-                while( (number = numbers.nextInt()) != -1) {
-                    writeInteger(number);
-                }
+                while((line = br.readLine()) != null) {
+                    Scanner numbers = new Scanner(line);
+                    int number;
+                    
+                    try {
+                        while( (number = numbers.nextInt()) != -1) {
+                            writeInteger(number);
+                        } 
+                    } catch(NoSuchElementException ex) {}
+
+                }     
+
             }
-        } catch(NoSuchElementException ex) {}
+        }        
         catch (IOException ex) {
             System.out.println("Error: "+ex.getMessage());
         } finally {

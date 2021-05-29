@@ -36,6 +36,7 @@ public class BinaryRW {
             
             // Loop through size of file in bits
             long sizeOfFileInBits = file.length()*8;
+            int writtenNumbers = 0;
             for(long i=0; i<sizeOfFileInBits; ++i){
                 int modVal = (int) (numOfBits - 1 - i%numOfBits); 
                 bitArray[modVal] = bis.read(); // fill array to write into output
@@ -44,6 +45,10 @@ public class BinaryRW {
                     // Add one to output number
                     output++;
                     bw.write(output+delimiter);
+                    writtenNumbers++;
+                    if(writtenNumbers % 20 == 0) {
+                        bw.write("\n");
+                    }
                 }
             }
             bis.close();
